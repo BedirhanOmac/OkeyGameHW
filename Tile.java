@@ -23,7 +23,7 @@ public class Tile {
      * return true if they are matching, false otherwise
      */
     public boolean matchingTiles(Tile t) {
-        if ((t.color == this.color) && t.value == this.value) {
+        if (t.getColor() == this.color && t.getValue() == this.value) {
             return true;
         }
         return false;

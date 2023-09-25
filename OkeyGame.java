@@ -1,5 +1,6 @@
 package OkeyGame;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -123,7 +124,7 @@ public class OkeyGame {
      * known by other players
      */
     public void discardTileForComputer() {
-
+        
     }
 
     /*
@@ -132,8 +133,11 @@ public class OkeyGame {
      * that player's tiles
      */
     public void discardTile(int tileIndex) {
+        ArrayList<String> tileList = new ArrayList<>(Arrays.asList(this.players[currentPlayerIndex].playerTiles));
+        tileList.remove(tileIndex);
         
-    
+        lastDiscardedTile = this.players[currentPlayerIndex].playerTiles[tileIndex];
+        this.players[currentPlayerIndex].playerTiles = arrayList.toArray(tileIndex);
     }
 
     public void currentPlayerSortTilesColorFirst() {

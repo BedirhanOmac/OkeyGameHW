@@ -101,6 +101,7 @@ public class OkeyGame {
      * for this simplified version
      */
     public boolean didGameFinish() {
+        
         return false;
     }
 
@@ -112,7 +113,13 @@ public class OkeyGame {
      * the current status. Print whether computer picks from tiles or discarded ones.
      */
     public void pickTileForComputer() {
-
+        double choiceMaker = Math.floor(Math.random()*2);
+        if (choiceMaker==1) {
+            getTopTile();
+        }
+        else {
+            getLastDiscardedTile();
+        }
     }
 
     /*

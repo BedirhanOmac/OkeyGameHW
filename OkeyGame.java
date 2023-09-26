@@ -124,7 +124,20 @@ public class OkeyGame {
      * known by other players
      */
     public void discardTileForComputer() {
-        
+        Tile[] arr = this.players[currentPlayerIndex].playerTiles;
+        int[] chainsOfTiles = new int[arr.length];
+        for ( int i = 0 ; i < arr.length; i ++) {
+            chainsOfTiles[i] = this.players[currentPlayerIndex].findLongestChainOf(arr[i]);
+        }
+        int lowestChainTile = chainsOfTiles[0];
+        for (int i = 1; i < chainsOfTiles.length; i++ ) {
+            if (chainsOfTiles[i] > lowestChainTile) {
+                lowestChainTile = chainsOfTiles[i];
+            }
+        }
+        Tile discardedTile = chainsOfTiles[lowestChainTile];
+        discardTile(lowestChainTile);
+        discardedTile.toString();
     }
 
     /*
@@ -133,11 +146,23 @@ public class OkeyGame {
      * that player's tiles
      */
     public void discardTile(int tileIndex) {
-        ArrayList<String> tileList = new ArrayList<>(Arrays.asList(this.players[currentPlayerIndex].playerTiles));
-        tileList.remove(tileIndex);
+        Tile[] tiles = this.players[currentPlayerIndex].playerTiles;
+        Tile[] newArray = new Tile[tiles.length - 1];
+
+        //remove the tile from he array
+        for (int i = 0; i < tiles.length; i ++) {
+            if (i != tileIndex) {
+                if (i < tileIndex){
+                    newArray[i] = tiles[i];
+                }
+                else {
+                    newArray[i - 1] = tiles[i];
+                }
+            }
+        } 
+        lastDiscardedTile = tiles[tileIndex];
+        tiles = newArray;
         
-        lastDiscardedTile = this.players[currentPlayerIndex].playerTiles[tileIndex];
-        this.players[currentPlayerIndex].playerTiles = arrayList.toArray(tileIndex);
     }
 
     public void currentPlayerSortTilesColorFirst() {

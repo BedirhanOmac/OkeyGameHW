@@ -41,6 +41,39 @@ public class OkeyGame {
      * this method assumes the tiles are already sorted
      */
     public void distributeTilesToPlayers() {
+        Tile[] remainingTiles = new Tile[104];
+        for(int i = 0; i < 104; i++){
+            remainingTiles[i] = tiles[i];
+        }
+
+        players[0] = new Player("Human");
+        players[1] = new Player("Bot1");
+        players[2] = new Player("Bot2");
+        players[3] = new Player("Bot3");
+
+        Random rand = new Random();
+        
+        for(int i = 0; i <= 3; i++){
+
+            int indexOfRand = rand.nextInt(105);
+            while(remainingTiles[indexOfRand].equals(null)){
+                indexOfRand = rand.nextInt(105);
+            }
+            if( i != 0){
+                for(int m = 0; m < 14; m++){
+                    players[i].playerTiles[m] = remainingTiles[indexOfRand];
+                    remainingTiles[indexOfRand] = null;
+                }
+            }
+            else if( i == 0){
+                int k = 0;
+                while( k < 15 ){
+                players[i].playerTiles[k] = remainingTiles[indexOfRand];
+                remainingTiles[indexOfRand] = null;
+                }
+            }
+
+        }
 
     }
 
@@ -49,8 +82,9 @@ public class OkeyGame {
      * (this simulates picking up the tile discarded by the previous player)
      * it should return the toString method of the tile so that we can print what we picked
      */
-    public String getLastDiscardedTile() {
-        return null;
+    public String getLastDiscardedTile(Tile lastDiscardedTile) {
+        players[0].addTile(lastDiscardedTile);
+        return "" + lastDiscardedTile;
     }
 
     /*

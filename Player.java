@@ -104,6 +104,19 @@ public class Player {
 
         return reTile;
     }
+    /*ADVICE// Also moves empty index to end, helping addTile method.////////////////////////////////////
+     * public Tile getAndRemoveTile(int index) {
+        Tile toRemove = playerTiles[index];
+        playerTiles[index] = null;
+        while( index != playerTiles.length -1 ){
+            Tile temp = playerTiles[index];
+            playerTiles[index] = playerTiles[index + 1];
+            playerTiles[index + 1] = temp;
+            index++;
+        }
+        return toRemove;
+    }
+     */
 
     /*
      * TODO: adds the given tile at the end of playerTiles array, should also ---DONE---
@@ -140,7 +153,20 @@ public class Player {
         }
         
     }
-
+    /*ADVICE////////////////////////////////////////////////////////////////////////////////
+    public void sortTilesColorFirst() {
+        int n = playerTiles.length;
+        for(int i = 0; i < n - 1; i++){
+            for(int m = 0; m < n - i -1; m++){
+                if( playerTiles[m].compareToColorFirst(playerTiles[m+1]) == 1){
+                    Tile temp = playerTiles[m+1];
+                    playerTiles[m+1] = playerTiles[m];
+                    playerTiles[m] = temp;
+                }
+            }
+        } 
+    }
+    */
     /*
      * TODO: uses bubble sort to sort playerTiles in increasing value and color ---DONE---
      * value order: 1 < 2 < ... < 12 < 13
@@ -161,6 +187,21 @@ public class Player {
         }
 
     }
+    /*ADVICE/////////////////////////////////////////////////////////////////////////////////////////
+     * public void sortTilesValueFirst() {
+
+        int n = playerTiles.length;
+        for(int i = 0; i < n - 1; i++){
+            for(int m = 0; m < n - i -1; m++){
+                if( playerTiles[m].compareToValueFirst(playerTiles[m+1]) == 1){
+                    Tile temp = playerTiles[m+1];
+                    playerTiles[m+1] = playerTiles[m];
+                    playerTiles[m] = temp;
+                }
+            }
+        } 
+    }
+     */
 
     public int findPositionOfTile(Tile t) {
         int tilePosition = -1;

@@ -86,7 +86,7 @@ public class OkeyGame {
     public String getLastDiscardedTile() {
         
         
-        players[currentPlayerIndex].addTile(discardTileForComputer(index));
+        players[currentPlayerIndex].addTile(lastDiscardedTile);
         return lastDiscardedTile + "";
     }
 
@@ -196,10 +196,10 @@ public class OkeyGame {
      */
     public void discardTileForComputer() {
         
-        Tile[] arr = this.players[index].playerTiles;
+        Tile[] arr = this.players[currentPlayerIndex].playerTiles;
         int[] chainsOfTiles = new int[arr.length];
         for ( int i = 0 ; i < arr.length; i ++) {
-            chainsOfTiles[i] = this.players[index].findLongestChainOf(arr[i]);
+            chainsOfTiles[i] = this.players[currentPlayerIndex].findLongestChainOf(arr[i]);
         }
         int lowestChainTile = chainsOfTiles[0];
         for (int i = 1; i < chainsOfTiles.length; i++ ) {

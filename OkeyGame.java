@@ -83,11 +83,11 @@ public class OkeyGame {
      * (this simulates picking up the tile discarded by the previous player)
      * it should return the toString method of the tile so that we can print what we picked
      */
-    public String getLastDiscardedTile(int index) {
+    public String getLastDiscardedTile() {
         
-        index = currentPlayerIndex - 1;
+        
         players[currentPlayerIndex].addTile(discardTileForComputer(index));
-        return discardTileForComputer();
+        return lastDiscardedTile + "";
     }
 
     /*
@@ -192,8 +192,8 @@ public class OkeyGame {
      * this method should print what tile is discarded since it should be
      * known by other players
      */
-    public void discardTileForComputer(int index) {
-        index = currentPlayerIndex;
+    public void discardTileForComputer() {
+        
         Tile[] arr = this.players[index].playerTiles;
         int[] chainsOfTiles = new int[arr.length];
         for ( int i = 0 ; i < arr.length; i ++) {

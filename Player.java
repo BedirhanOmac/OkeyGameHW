@@ -96,7 +96,7 @@ public class Player {
         }
     }
     /*
-     * ADVICE/hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+     * ADVICE/hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhıı
      * public int findLongestChainOf(Tile t) {
         int tilePosition;
         int longestChainColorFirst = 0;

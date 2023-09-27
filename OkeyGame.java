@@ -55,9 +55,9 @@ public class OkeyGame {
         
         for(int i = 0; i <= 3; i++){
 
-            int indexOfRand = rand.nextInt(105);
+            int indexOfRand = rand.nextInt(104);
             while(remainingTiles[indexOfRand].equals(null)){
-                indexOfRand = rand.nextInt(105);
+                indexOfRand = rand.nextInt(104);
             }
             if( i != 0){
                 for(int m = 0; m < 14; m++){
@@ -82,9 +82,11 @@ public class OkeyGame {
      * (this simulates picking up the tile discarded by the previous player)
      * it should return the toString method of the tile so that we can print what we picked
      */
-    public String getLastDiscardedTile(Tile lastDiscardedTile) {
-        players[0].addTile(lastDiscardedTile);
-        return "" + lastDiscardedTile;
+    public String getLastDiscardedTile(int index) {
+        
+        index = currentPlayerIndex - 1;
+        players[currentPlayerIndex].addTile(discardTileForComputer(index));
+        return discardTileForComputer();
     }
 
     /*
@@ -166,11 +168,12 @@ public class OkeyGame {
      * this method should print what tile is discarded since it should be
      * known by other players
      */
-    public void discardTileForComputer() {
-        Tile[] arr = this.players[currentPlayerIndex].playerTiles;
+    public void discardTileForComputer(int index) {
+        index = currentPlayerIndex;
+        Tile[] arr = this.players[index].playerTiles;
         int[] chainsOfTiles = new int[arr.length];
         for ( int i = 0 ; i < arr.length; i ++) {
-            chainsOfTiles[i] = this.players[currentPlayerIndex].findLongestChainOf(arr[i]);
+            chainsOfTiles[i] = this.players[index].findLongestChainOf(arr[i]);
         }
         int lowestChainTile = chainsOfTiles[0];
         for (int i = 1; i < chainsOfTiles.length; i++ ) {

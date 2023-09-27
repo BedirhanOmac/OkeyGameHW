@@ -83,11 +83,11 @@ public class OkeyGame {
      * (this simulates picking up the tile discarded by the previous player)
      * it should return the toString method of the tile so that we can print what we picked
      */
-    public String getLastDiscardedTile() {
+    public String getLastDiscardedTile(int index) {
         
-        
-        players[currentPlayerIndex].addTile(lastDiscardedTile);
-        return lastDiscardedTile + "";
+        index = currentPlayerIndex - 1;
+        players[currentPlayerIndex].addTile(discardTileForComputer(index));
+        return discardTileForComputer();
     }
 
     /*
@@ -138,9 +138,32 @@ public class OkeyGame {
      * for this simplified version
      */
     public boolean didGameFinish() {
-        calculateLongestChainPerTile();
+        int[] a1 = this.players[currentPlayerIndex].calculateLongestChainPerTile();
+        int count4OrMore = 0;
+        int count5OrMore = 0;
+        int count3OrMore = 0;
+        for (int i = 0;i<14;i++) {
+            if (a1 [i]>= 5) {
+                count5OrMore ++;
+            }
+        }
+         for (int i = 0;i<14;i++) {
+            if (a1 [i]>= 3) {
+                count3OrMore ++;
+            }
+        }
+         for (int i = 0;i<14;i++) {
+            if (a1 [i]>= 4) {
+                count4OrMore ++;
+            }
+        }
+        if (count5OrMore == 5 && count3OrMore == 14) {
+            return true;
+        }
+        if (count4OrMore == 8 && count3OrMore == 14) {
+            return true;
+        }
 
-        
         return false;
     }
 

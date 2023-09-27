@@ -138,32 +138,9 @@ public class OkeyGame {
      * for this simplified version
      */
     public boolean didGameFinish() {
-        int[] a1 = this.players[currentPlayerIndex].calculateLongestChainPerTile();
-        int count4OrMore = 0;
-        int count5OrMore = 0;
-        int count3OrMore = 0;
-        for (int i = 0;i<14;i++) {
-            if (a1 [i]>= 5) {
-                count5OrMore ++;
-            }
-        }
-         for (int i = 0;i<14;i++) {
-            if (a1 [i]>= 3) {
-                count3OrMore ++;
-            }
-        }
-         for (int i = 0;i<14;i++) {
-            if (a1 [i]>= 4) {
-                count4OrMore ++;
-            }
-        }
-        if (count5OrMore == 5 && count3OrMore == 14) {
-            return true;
-        }
-        if (count4OrMore == 8 && count3OrMore == 14) {
-            return true;
-        }
+        calculateLongestChainPerTile();
 
+        
         return false;
     }
 

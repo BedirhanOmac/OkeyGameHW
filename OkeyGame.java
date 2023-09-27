@@ -126,7 +126,7 @@ public class OkeyGame {
     }
 
     /*
-     * TODO: check if game still continues, should return true if current player
+     * TODO: check if game still continues, should return true if current player/ staging issues
      * finished the game. Use calculateLongestChainPerTile method to get the
      * longest chains per tile.
      * To win, you need one of the following cases to be true:

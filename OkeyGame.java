@@ -139,7 +139,7 @@ public class OkeyGame {
      */
     public boolean didGameFinish() {
         calculateLongestChainPerTile();
-
+        
         
         return false;
     }

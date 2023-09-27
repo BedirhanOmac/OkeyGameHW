@@ -110,13 +110,13 @@ public class ApplicationMain {
                 if(gameContinues) {
                     // if game continues we need to discard a tile using the given index by the player
                     System.out.println("Which tile you will discard?");
+                    
+                    // TODO: make sure the given index is correct, should be 0 <= index <= 14  -DONE
                     do {
                     System.out.print("Discard the tile in index: ");
                     playerChoice = sc.nextInt();
                      } while (0 > playerChoice || playerChoice > 14 ); 
-                   
-                    // TODO: make sure the given index is correct, should be 0 <= index <= 14  -DONE
-
+                    
                     game.discardTile(playerChoice);
                     game.passTurnToNextPlayer();
                 }

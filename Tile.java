@@ -1,4 +1,4 @@
-package OKEYGAMEHW;
+
 
 public class Tile {
 

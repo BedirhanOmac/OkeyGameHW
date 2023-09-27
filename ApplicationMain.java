@@ -1,4 +1,4 @@
-package OkeyGame;
+package OKEYGAMEHW;
 import java.util.Scanner;
 
 public class ApplicationMain {

@@ -79,7 +79,7 @@ public class OkeyGame {
     }
 
     /*
-     * TODO: get the last discarded tile for the current player
+     * TODO: get the last discarded tile for the current player/playerr
      * (this simulates picking up the tile discarded by the previous player)
      * it should return the toString method of the tile so that we can print what we picked
      */

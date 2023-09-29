@@ -44,25 +44,26 @@ public class OkeyGame {
     
 
     public void distributeTilesToPlayers() {
-    // Create a new ArrayList from the array
-    List<Tile> arrayList = new ArrayList<>(Arrays.asList(tiles));
     
-    for (int i = 0; i <= 3; i++) {
-        if (i != 0) {
-            for (int m = 0; m < 14; m++) {
-                Tile tile = arrayList.get(0);
-                players[i].playerTiles[m] = tile;
-                arrayList.remove(0);
+        int indexOfLastDistributed = 56;
+
+        for( int m = 3; m >= 0; m--){
+            if( m != 0){
+                for(int k = 0; k < 14; k++){
+                    players[m].playerTiles[k] = tiles[indexOfLastDistributed];
+                    players[m].numberOfTiles++;
+                    indexOfLastDistributed--;
+                }
+            }
+            if( m == 0){
+                for(int k = 0; k < 15; k++){
+                    players[m].playerTiles[k] = tiles[indexOfLastDistributed];
+                    players[m].numberOfTiles++;
+                    indexOfLastDistributed--;
+                }
             }
         }
-        if (i == 0) {
-            for (int m = 0; m < 15; m++) {
-                Tile tile = arrayList.get(0);
-                players[i].playerTiles[m] = tile;
-                arrayList.remove(0);
-            }
-        }
-    }
+    
 }
 
 
@@ -127,29 +128,32 @@ public class OkeyGame {
      * for this simplified version
      */
     public boolean didGameFinish() {
-        int[] a1 = this.players[currentPlayerIndex].calculateLongestChainPerTile();
+        int[] a1 = new int[players[currentPlayerIndex].numberOfTiles];
+        for(int i = 0; i < players[currentPlayerIndex].numberOfTiles; i++){
+            a1[i] = players[currentPlayerIndex].calculateLongestChainPerTile()[i];
+        }
         int count4OrMore = 0;
         int count5OrMore = 0;
         int count3OrMore = 0;
-        for (int i = 0;i<15;i++) {
+        for (int i = 0;i<players[currentPlayerIndex].numberOfTiles;i++) {
             if (a1 [i]>= 5) {
                 count5OrMore ++;
             }
         }
-         for (int i = 0;i<15;i++) {
+         for (int i = 0;i < players[currentPlayerIndex].numberOfTiles;i++) {
             if (a1 [i]>= 3) {
                 count3OrMore ++;
             }
         }
-         for (int i = 0;i<15;i++) {
+         for (int i = 0;i < players[currentPlayerIndex].numberOfTiles;i++) {
             if (a1 [i]>= 4) {
                 count4OrMore ++;
             }
         }
-        if (count5OrMore == 5 && count3OrMore == 14) {
+        if (count5OrMore == 5 && count3OrMore == 9) {
             return true;
         }
-        if (count4OrMore == 8 && count3OrMore == 14) {
+        if (count4OrMore == 8 && count3OrMore == 6) {
             return true;
         }
 
@@ -228,7 +232,9 @@ public class OkeyGame {
             }
         } 
         lastDiscardedTile = tiles[tileIndex];
-        tiles = newArray;
+        for(int m = 0; m < 14; m++){
+           players[currentPlayerIndex].playerTiles[m]  = newArray[m];
+        }
         
     }
 

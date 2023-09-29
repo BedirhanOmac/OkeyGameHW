@@ -196,7 +196,7 @@ public class Player {
      * you can use compareToColorFirst method in Tile class for comparing
      * you are allowed to use Collections.sort method
      */
-    public void sortTilesColorFirst() {
+    /*public void sortTilesColorFirst() {
         Tile tempTile;
         for(int i = 0; i < playerTiles.length-1; i++) {
             if(playerTiles[i].compareToColorFirst(playerTiles[i+1]) < 0) {
@@ -206,8 +206,8 @@ public class Player {
             }
         }
         
-    }
-    /*ADVICE////////////////////////////////////////////////////////////////////////////////
+    }*/
+    
     public void sortTilesColorFirst() {
         int n = playerTiles.length;
         for(int i = 0; i < n - 1; i++){
@@ -220,7 +220,7 @@ public class Player {
             }
         } 
     }
-    */
+    
     /*
      * TODO: uses bubble sort to sort playerTiles in increasing value and color ---DONE---
      * value order: 1 < 2 < ... < 12 < 13
@@ -240,9 +240,9 @@ public class Player {
             }
         }
 
-    }
-    /*ADVICE/////////////////////////////////////////////////////////////////////////////////////////
-     * public void sortTilesValueFirst() {
+    }*/
+    
+    public void sortTilesValueFirst() {
 
         int n = playerTiles.length;
         for(int i = 0; i < n - 1; i++){

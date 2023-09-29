@@ -59,7 +59,7 @@ public class ApplicationMain {
 
                 System.out.print("Your choice: ");
                 playerChoice = sc.nextInt();
-
+                game.displayCurrentPlayersTiles();
                 // sorting does not pass turn, so it is in a loop until user choses some other value
                 while(playerChoice == 1 || playerChoice == 2) {
                     

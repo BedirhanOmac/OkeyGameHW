@@ -55,7 +55,7 @@ public class Player {
      * and if you start a chain with matching values it should continue with the same type of match
      * use the different values canFormChainWith method returns.
      */
-    public int findLongestChainOf(Tile t) {
+    /*ublic int findLongestChainOf(Tile t) {
         int tilePosition;
         int splitIndex;
         int i = 0;
@@ -94,13 +94,15 @@ public class Player {
         else{
             return longestChainValueFirst;
         }
-    }
-    /*
-     * ADVICE/hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhıı
-     * public int findLongestChainOf(Tile t) {
+ }*/
+
+    
+      //3Y 3Y 6Y 7Y 1B 2B 3B 3B 10R 11R 12R 2K 4K 5K
+      public int findLongestChainOf(Tile t) {
         int tilePosition;
         int longestChainColorFirst = 0;
-        // TODO: find the longest chain starting from tilePosition going left and right - !requesting test
+        
+        //TODO: find the longest chain starting from tilePosition going left and right - !requesting test
         sortTilesColorFirst();
         tilePosition = findPositionOfTile(t);
         int m = tilePosition;
@@ -119,7 +121,7 @@ public class Player {
         }
         longestChainColorFirst += 1;
         
-        // TODO: find the longest chain starting from tilePosition going left and right - !requesting test
+        //TODO: find the longest chain starting from tilePosition going left and right - !requesting test
         sortTilesValueFirst();
         tilePosition = findPositionOfTile(t);
         int y = tilePosition;
@@ -146,7 +148,7 @@ public class Player {
             return longestChainValueFirst;
         }
     }
-     */
+     
 
     /*
      * TODO: removes and returns the tile in given index ---DONE---

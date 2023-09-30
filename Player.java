@@ -241,6 +241,7 @@ public class Player {
      * you can use compareToValueFirst method in Tile class for comparing
      * you are allowed to use Collections.sort method
      */
+//<<<<<<< Updated upstream
     // public void sortTilesValueFirst() {
     //     Tile tempTile;
     //     for(int i = 0; i < playerTiles.length-1; i++) {
@@ -252,6 +253,9 @@ public class Player {
     //     }
 
     // }
+//=======
+    
+//>>>>>>> Stashed changes
     
     public void sortTilesValueFirst() {
 

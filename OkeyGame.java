@@ -150,10 +150,10 @@ public class OkeyGame {
                 count4OrMore ++;
             }
         }
-        if (count5OrMore == 5 && count3OrMore == 9) {
+        if (count5OrMore == 5 && count3OrMore >= 9) {
             return true;
         }
-        if (count4OrMore == 8 && count3OrMore == 6) {
+        if (count4OrMore == 8 && count3OrMore >= 6) {
             return true;
         }
 
@@ -234,8 +234,10 @@ public class OkeyGame {
         } 
         
         lastDiscardedTile = tiles[tileIndex];
-        for(int m = 0; m < 15; m++){
-           players[currentPlayerIndex].playerTiles[m]  = newArray[m];
+        int m = players[currentPlayerIndex].numberOfTiles;
+        m--;
+        for(int n = 0; n < m; n++){
+           players[currentPlayerIndex].playerTiles[n]  = newArray[n];
         }
         
     }

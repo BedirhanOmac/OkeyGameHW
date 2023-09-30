@@ -1,10 +1,3 @@
-
-
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 public class OkeyGame {
@@ -36,13 +29,11 @@ public class OkeyGame {
     }
 
     /*
-     * TODO: distributes the starting tiles to the players
+     * DONE: distributes the starting tiles to the players
      * player at index 0 gets 15 tiles and starts first
      * other players get 14 tiles
      * this method assumes the tiles are already sorted
      */
-    
-
     public void distributeTilesToPlayers() {
     
         int indexOfLastDistributed = 56;
@@ -52,7 +43,6 @@ public class OkeyGame {
                 for(int k = 0; k < 14; k++){
                     players[m].playerTiles[k] = tiles[indexOfLastDistributed];
                     players[m].numberOfTiles++;
-                    tiles[indexOfLastDistributed] = null;
                     indexOfLastDistributed--;
                 }
             }
@@ -60,7 +50,6 @@ public class OkeyGame {
                 for(int k = 0; k < 15; k++){
                     players[m].playerTiles[k] = tiles[indexOfLastDistributed];
                     players[m].numberOfTiles++;
-                    tiles[indexOfLastDistributed] = null;
                     indexOfLastDistributed--;
                 }
             }
@@ -70,7 +59,7 @@ public class OkeyGame {
 
 
     /*
-     * TODO: get the last discarded tile for the current player/playerr
+     * DONE: get the last discarded tile for the current player/playerr
      * (this simulates picking up the tile discarded by the previous player)
      * it should return the toString method of the tile so that we can print what we picked
      */
@@ -82,24 +71,28 @@ public class OkeyGame {
     }
 
     /*
-     * TODO: get the top tile from tiles array for the current player
+     * DONE: get the top tile from tiles array for the current player
      * that tile is no longer in the tiles array (this simulates picking up the top tile)
      * it should return the toString method of the tile so that we can print what we picked
      */
     public String getTopTile() {
-        int i = 1;
+       
+        Tile topTile = tiles[tiles.length-1];
+        Tile[] newArray = new Tile[tiles.length - 1];
         
-        Tile topTile = tiles[tiles.length-i];
-        i++;
         
-        // or this
-        // Tile topTile = tiles[0];
+        //remove the tile from the array
+        for (int i = 0; i < tiles.length - 1; i++) {
+            newArray[i] = tiles[i];
+        } 
+        tiles = newArray;
+
         players[currentPlayerIndex].addTile(topTile);
         return topTile.toString();
     }
 
     /*
-     * TODO: should randomly shuffle the tiles array before game starts ---DONE---
+     * DONE: should randomly shuffle the tiles array before game starts.
      */
     public void shuffleTiles() {
 
@@ -111,18 +104,9 @@ public class OkeyGame {
             tiles[i] = temp;
         }
     }
-        /*Alternative solution
-          
-          List<Tile> tileList = Arrays.asList(tiles);
-            Collections.shuffle(tileList);
-            tileList.toArray();
-        */
-         
-
     
-
     /*
-     * TODO: check if game still continues, should return true if current player/ staging issues
+     * DONE: check if game still continues, should return true if current player/ staging issues
      * finished the game. Use calculateLongestChainPerTile method to get the
      * longest chains per tile.
      * To win, you need one of the following cases to be true:
@@ -156,10 +140,10 @@ public class OkeyGame {
                 count4OrMore ++;
             }
         }
-        if (count5OrMore == 5 && count3OrMore >= 14) {
+        if (count5OrMore == 5 && count3OrMore == 9) {
             return true;
         }
-        if (count4OrMore == 8 && count3OrMore >= 14) {
+        if (count4OrMore == 8 && count3OrMore == 6) {
             return true;
         }
 
@@ -169,7 +153,7 @@ public class OkeyGame {
     }
 
     /*
-     * TODO: Pick a tile for the current computer player using one of the following:
+     * DONE: Pick a tile for the current computer player using one of the following:
      * - picking from the tiles array using getTopTile()
      * - picking from the lastDiscardedTile using getLastDiscardedTile()
      * You may choose randomly or consider if the discarded tile is useful for
@@ -188,7 +172,7 @@ public class OkeyGame {
     }
 
     /*
-     * TODO: Current computer player will discard the least useful tile.
+     * DONE: Current computer player will discard the least useful tile.
      * For this use the findLongestChainOf method in Player class to calculate
      * the longest chain length per tile of this player,
      * then choose the tile with the lowest chain length and discard it
@@ -205,6 +189,8 @@ public class OkeyGame {
         for ( int i = 0 ; i < arr.length; i++) {
             chainsOfTiles[i] = this.players[currentPlayerIndex].findLongestChainOf(arr[i]);
         }
+
+        //find the index of tile having the minimum length chain. 
         int lowestChainTile = chainsOfTiles[0];
         for (int i = 1; i < chainsOfTiles.length; i++ ) {
             if (chainsOfTiles[i] > lowestChainTile) {
@@ -216,7 +202,7 @@ public class OkeyGame {
     }
 
     /*
-     * TODO: discards the current player's tile at given index
+     * DONE: discards the current player's tile at given index
      * this should set lastDiscardedTile variable and remove that tile from
      * that player's tiles
      */
@@ -225,11 +211,12 @@ public class OkeyGame {
         for(int m = 0; m < 15; m++){
             tiles[m] = players[currentPlayerIndex].playerTiles[m];
         }
-        Tile[] newArray = new Tile[tiles.length];
+        lastDiscardedTile = tiles[tileIndex];
 
         //remove the tile from the array
-        for (int i = 0; i < tiles.length; i ++) { // tile: 1 3 4 5 3 2 7 5 4 3 2 5 9 2 12
-            if (i != tileIndex) {                 // newa: 1 3 4 3 2 7 5 4 3 2 5 9 2 12 null
+        Tile[] newArray = new Tile[tiles.length];
+        for (int i = 0; i < tiles.length; i ++) {
+            if (i != tileIndex) {
                 if (i < tileIndex){
                     newArray[i] = tiles[i];
                 }
@@ -239,11 +226,8 @@ public class OkeyGame {
             }
         } 
         
-        lastDiscardedTile = tiles[tileIndex];
-        int m = players[currentPlayerIndex].numberOfTiles;
-        m = 14;
-        for(int n = 0; n < m+1; n++){
-           players[currentPlayerIndex].playerTiles[n]  = newArray[n];
+        for(int m = 0; m < 15; m++){
+           players[currentPlayerIndex].playerTiles[m]  = newArray[m];
         }
         
     }
@@ -282,6 +266,14 @@ public class OkeyGame {
         if(index >= 0 && index <= 3) {
             players[index] = new Player(name);
         }
+    }
+
+    public void shrinkTiles() {
+        Tile[] newArray = new Tile[47]; // Discard the tiles distributed to players.
+        for (int i = 0; i < 47; i++) {
+            newArray[i] = tiles[i + 57];
+        } 
+        tiles = newArray;
     }
 
 }

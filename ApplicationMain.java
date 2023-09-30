@@ -18,7 +18,6 @@ public class ApplicationMain {
         game.createTiles();
         game.shuffleTiles();
         game.distributeTilesToPlayers();
-        System.out.println("no error for distribute tiles");
         
 
         // developer mode is used for seeing the computer players hands, to be used for debugging
@@ -112,7 +111,7 @@ public class ApplicationMain {
                 if(gameContinues) {
                     // if game continues we need to discard a tile using the given index by the player
                     System.out.println("Which tile you will discard?");
-                    
+                    System.out.println("I am running");
                     // TODO: make sure the given index is correct, should be 0 <= index <= 14  -DONE
                     do {
                     System.out.print("Discard the tile in index: ");
@@ -120,6 +119,7 @@ public class ApplicationMain {
                      } while (0 > playerChoice || playerChoice > 14 ); 
                     
                     game.discardTile(playerChoice);
+                    System.out.println("I am running");
                     game.passTurnToNextPlayer();
                 }
                 else{

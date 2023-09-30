@@ -55,6 +55,7 @@ public class Player {
      * and if you start a chain with matching values it should continue with the same type of match
      * use the different values canFormChainWith method returns.
      */
+
     /*ublic int findLongestChainOf(Tile t) {
         int tilePosition;
         int splitIndex;
@@ -107,19 +108,23 @@ public class Player {
         tilePosition = findPositionOfTile(t);
         int m = tilePosition;
         int n = tilePosition;
+      
         if( tilePosition >= 1){
-            while(playerTiles[m].canFormChainWith(playerTiles[m-1]) == 1){
+            while(m >= 1 && playerTiles[m].canFormChainWith(playerTiles[m-1]) == 1){
                 longestChainColorFirst++;
                 m--;
             }
         }
         if( tilePosition < playerTiles.length - 1){
-            while(playerTiles[n].canFormChainWith(playerTiles[n+1]) == 1){
+            while(n < playerTiles.length - 1 && playerTiles[n].canFormChainWith(playerTiles[n+1]) == 1){
                 longestChainColorFirst++;
                 n++;
             }
         }
-        longestChainColorFirst += 1;
+
+        longestChainColorFirst -= 1;
+        
+        
         
         //TODO: find the longest chain starting from tilePosition going left and right - !requesting test
         sortTilesValueFirst();
@@ -128,18 +133,19 @@ public class Player {
         int z = tilePosition;
         int longestChainValueFirst = 0;
         if( tilePosition >= 1){
-            while(playerTiles[y].canFormChainWith(playerTiles[y-1]) == 2){
+            while( y >= 1 && playerTiles[y].canFormChainWith(playerTiles[y-1]) == 2){
                 longestChainValueFirst++;
                 y--;
             }
         }
         if( tilePosition < playerTiles.length - 1){
-            while(playerTiles[z].canFormChainWith(playerTiles[z+1]) == 2){
+            while( y < playerTiles.length - 1 &&  playerTiles[z].canFormChainWith(playerTiles[z+1]) == 2){
                 longestChainValueFirst++;
                 z++;
             }
         }
-        longestChainValueFirst += 1;
+        longestChainValueFirst -= 1;
+       
 
         if(longestChainColorFirst > longestChainValueFirst) {
             return longestChainColorFirst;
@@ -177,14 +183,19 @@ public class Player {
      * update numberOfTiles accordingly. Make sure the player does not try to
      * have more than 15 tiles at a time
      */
+
+     //************************************ */
     public void addTile(Tile t) {
-        if(playerTiles.length <= 15) {
-            playerTiles[playerTiles.length-1] = t;
+        if(playerTiles[14] == null) { 
+            playerTiles[playerTiles.length - 1] = t;
+            if(numberOfTiles != 15) {
+                numberOfTiles = 15;
+            }
         }
         else {
             System.out.println("You cannot have more than 15 tiles");
         }
-
+        
     }
 
     /*
@@ -196,17 +207,18 @@ public class Player {
      * you can use compareToColorFirst method in Tile class for comparing
      * you are allowed to use Collections.sort method
      */
-    /*public void sortTilesColorFirst() {
-        Tile tempTile;
-        for(int i = 0; i < playerTiles.length-1; i++) {
-            if(playerTiles[i].compareToColorFirst(playerTiles[i+1]) < 0) {
-                tempTile = playerTiles[i];
-                playerTiles[i] = playerTiles[i+1];
-                playerTiles[i+1] = tempTile;
-            }
-        }
+
+    // public void sortTilesColorFirst() {
+    //     Tile tempTile;
+    //     for(int i = 0; i < playerTiles.length-2; i++) {
+    //         if(playerTiles[i].compareToColorFirst(playerTiles[i+1]) < 0) {
+    //             tempTile = playerTiles[i];
+    //             playerTiles[i] = playerTiles[i+1];
+    //             playerTiles[i+1] = tempTile;
+    //         }
+    //     }
         
-    }*/
+    // }
     
     public void sortTilesColorFirst() {
         int n = playerTiles.length;
@@ -230,17 +242,17 @@ public class Player {
      * you can use compareToValueFirst method in Tile class for comparing
      * you are allowed to use Collections.sort method
      */
-    public void sortTilesValueFirst() {
-        Tile tempTile;
-        for(int i = 0; i < playerTiles.length-2; i++) {
-            if(playerTiles[i].compareToValueFirst(playerTiles[i+1]) < 0) {
-                tempTile = playerTiles[i];
-                playerTiles[i] = playerTiles[i+1];
-                playerTiles[i+1] = tempTile;
-            }
-        }
+    // public void sortTilesValueFirst() {
+    //     Tile tempTile;
+    //     for(int i = 0; i < playerTiles.length-1; i++) {
+    //         if(playerTiles[i].compareToValueFirst(playerTiles[i+1]) < 0) {
+    //             tempTile = playerTiles[i];
+    //             playerTiles[i] = playerTiles[i+1];
+    //             playerTiles[i+1] = tempTile;
+    //         }
+    //     }
 
-    }*/
+    // }
     
     public void sortTilesValueFirst() {
 
@@ -255,7 +267,7 @@ public class Player {
             }
         } 
     }
-     */
+     
 
     public int findPositionOfTile(Tile t) {
         int tilePosition = -1;

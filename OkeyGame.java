@@ -173,9 +173,11 @@ public class OkeyGame {
         double choiceMaker = Math.floor(Math.random()*2);
         if (choiceMaker==1) {
             getTopTile();
+            System.out.println("Picked from tiles");
         }
         else {
             getLastDiscardedTile();
+            System.out.println("Picked last discarded t");
         }
     }
 
@@ -203,9 +205,8 @@ public class OkeyGame {
                 lowestChainTile = chainsOfTiles[i];
             }
         }
-        Tile discardedTile = this.players[currentPlayerIndex].playerTiles[lowestChainTile];
         discardTile(lowestChainTile);
-        discardedTile.toString();
+        displayDiscardInformation();
     }
 
     /*
@@ -218,21 +219,22 @@ public class OkeyGame {
         for(int m = 0; m < 15; m++){
             tiles[m] = players[currentPlayerIndex].playerTiles[m];
         }
-        Tile[] newArray = new Tile[tiles.length - 1];
+        Tile[] newArray = new Tile[tiles.length];
 
-        //remove the tile from he array
+        //remove the tile from the array
         for (int i = 0; i < tiles.length; i ++) {
             if (i != tileIndex) {
                 if (i < tileIndex){
                     newArray[i] = tiles[i];
                 }
                 else {
-                    newArray[i - 1] = tiles[i];
+                    newArray[i- 1] = tiles[i];
                 }
             }
         } 
+        
         lastDiscardedTile = tiles[tileIndex];
-        for(int m = 0; m < 14; m++){
+        for(int m = 0; m < 15; m++){
            players[currentPlayerIndex].playerTiles[m]  = newArray[m];
         }
         
@@ -275,8 +277,3 @@ public class OkeyGame {
     }
 
 }
-
-
-
-
-// trialllll

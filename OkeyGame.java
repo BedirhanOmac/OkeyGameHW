@@ -177,7 +177,7 @@ public class OkeyGame {
         }
         else {
             getLastDiscardedTile();
-            System.out.println("Picked last discarded t");
+            System.out.println("Picked last discarded");
         }
     }
 

@@ -139,7 +139,7 @@ public class Player {
             }
         }
         if( tilePosition < playerTiles.length - 1){
-            while( y < playerTiles.length - 1 &&  playerTiles[z].canFormChainWith(playerTiles[z+1]) == 2){
+            while( z < playerTiles.length - 1 &&  playerTiles[z].canFormChainWith(playerTiles[z+1]) == 2){
                 longestChainValueFirst++;
                 z++;
             }

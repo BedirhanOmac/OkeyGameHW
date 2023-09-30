@@ -223,7 +223,7 @@ public class Player {
         int n = playerTiles.length;
         for(int i = 0; i < n - 1; i++){
             for(int m = 0; m < n - i -1; m++){
-                if( playerTiles[m].compareToColorFirst(playerTiles[m+1]) == 1){
+                if(playerTiles[m + 1] != null && playerTiles[m].compareToColorFirst(playerTiles[m+1]) == 1){
                     Tile temp = playerTiles[m+1];
                     playerTiles[m+1] = playerTiles[m];
                     playerTiles[m] = temp;
@@ -258,7 +258,7 @@ public class Player {
         int n = playerTiles.length;
         for(int i = 0; i < n - 1; i++){
             for(int m = 0; m < n - i -1; m++){
-                if( playerTiles[m].compareToValueFirst(playerTiles[m+1]) == 1){
+                if(playerTiles[m + 1] != null && playerTiles[m].compareToValueFirst(playerTiles[m+1]) == 1){
                     Tile temp = playerTiles[m+1];
                     playerTiles[m+1] = playerTiles[m];
                     playerTiles[m] = temp;

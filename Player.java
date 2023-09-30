@@ -81,7 +81,7 @@ public class Player {
             }
         }
 
-        longestChainColorFirst -= 1;
+        longestChainColorFirst += 1;
 
         // DONE: find the longest chain starting from tilePosition going left and right
         sortTilesValueFirst();
@@ -101,7 +101,7 @@ public class Player {
                 z++;
             }
         }
-        longestChainValueFirst -= 1;
+        longestChainValueFirst += 1;
 
         if (longestChainColorFirst > longestChainValueFirst) {
             return longestChainColorFirst;

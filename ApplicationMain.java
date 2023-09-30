@@ -119,6 +119,8 @@ public class ApplicationMain {
                     
                     game.discardTile(playerChoice);
                     System.out.println("I am running");
+                    game.displayCurrentPlayersTiles();
+                    game.displayDiscardInformation();
                     game.passTurnToNextPlayer();
                 }
                 else{

@@ -52,6 +52,7 @@ public class OkeyGame {
                 for(int k = 0; k < 14; k++){
                     players[m].playerTiles[k] = tiles[indexOfLastDistributed];
                     players[m].numberOfTiles++;
+                    tiles[indexOfLastDistributed] = null;
                     indexOfLastDistributed--;
                 }
             }
@@ -59,6 +60,7 @@ public class OkeyGame {
                 for(int k = 0; k < 15; k++){
                     players[m].playerTiles[k] = tiles[indexOfLastDistributed];
                     players[m].numberOfTiles++;
+                    tiles[indexOfLastDistributed] = null;
                     indexOfLastDistributed--;
                 }
             }
@@ -85,7 +87,11 @@ public class OkeyGame {
      * it should return the toString method of the tile so that we can print what we picked
      */
     public String getTopTile() {
-        Tile topTile = tiles[tiles.length-1];
+        int i = 1;
+        
+        Tile topTile = tiles[tiles.length-i];
+        i++;
+        
         // or this
         // Tile topTile = tiles[0];
         players[currentPlayerIndex].addTile(topTile);
@@ -150,10 +156,10 @@ public class OkeyGame {
                 count4OrMore ++;
             }
         }
-        if (count5OrMore == 5 && count3OrMore >= 9) {
+        if (count5OrMore == 5 && count3OrMore >= 14) {
             return true;
         }
-        if (count4OrMore == 8 && count3OrMore >= 6) {
+        if (count4OrMore == 8 && count3OrMore >= 14) {
             return true;
         }
 
@@ -222,8 +228,8 @@ public class OkeyGame {
         Tile[] newArray = new Tile[tiles.length];
 
         //remove the tile from the array
-        for (int i = 0; i < tiles.length; i ++) {
-            if (i != tileIndex) {
+        for (int i = 0; i < tiles.length; i ++) { // tile: 1 3 4 5 3 2 7 5 4 3 2 5 9 2 12
+            if (i != tileIndex) {                 // newa: 1 3 4 3 2 7 5 4 3 2 5 9 2 12 null
                 if (i < tileIndex){
                     newArray[i] = tiles[i];
                 }
@@ -235,8 +241,8 @@ public class OkeyGame {
         
         lastDiscardedTile = tiles[tileIndex];
         int m = players[currentPlayerIndex].numberOfTiles;
-        m--;
-        for(int n = 0; n < m; n++){
+        m = 14;
+        for(int n = 0; n < m+1; n++){
            players[currentPlayerIndex].playerTiles[n]  = newArray[n];
         }
         

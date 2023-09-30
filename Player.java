@@ -186,10 +186,11 @@ public class Player {
 
      //************************************ */
     public void addTile(Tile t) {
-        if(playerTiles[14] == null) { 
+        if(playerTiles[14] == null ) { 
             playerTiles[playerTiles.length - 1] = t;
             numberOfTiles = 15;
         }
+        
 
         else {
             System.out.println("You cannot have more than 15 tiles");

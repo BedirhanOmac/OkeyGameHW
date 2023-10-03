@@ -142,14 +142,21 @@ public class ApplicationMain {
                 game.pickTileForComputer();
 
                 gameContinues = !game.didGameFinish();
-
+                if (game.tiles.length == 0) {
+                    gameContinues = false;
+                }
                 if (gameContinues) {
                     // if game did not end computer should discard
                     game.discardTileForComputer();
                     game.passTurnToNextPlayer();
                 } else {
-                    // current computer character wins
-                    System.out.println(game.getCurrentPlayerName() + " wins.");
+                    if (game.players.length == 0) {
+                        // current computer character wins
+                        System.out.println(game.getCurrentPlayerName() + " wins.");
+                    }
+                    else {
+                        System.out.println("Run out of tiles.");
+                    }
                 }
             }
         }

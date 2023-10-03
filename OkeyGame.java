@@ -140,10 +140,10 @@ public class OkeyGame {
                 count4OrMore ++;
             }
         }
-        if (count5OrMore == 5 && count3OrMore == 9) {
+        if (count5OrMore == 5 && count3OrMore >= 14) {
             return true;
         }
-        if (count4OrMore == 8 && count3OrMore == 6) {
+        if (count4OrMore == 8 && count3OrMore >= 14) {
             return true;
         }
 
